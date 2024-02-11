@@ -66,7 +66,7 @@
 						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="{%url 'home' %}">Home</a>
 					</li>
 					<li class="mb-1">
-						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="{%url 'home' %}">About Us</a>
+						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="{%url 'about' %}">About Us</a>
 					</li>
 					<li class="mb-1">
 						<a class="block p-4 text-sm font-semibold text-gray-400 hover:bg-blue-50 hover:text-blue-600 rounded" href="{%url 'calculator' %}">Calculator</a>
@@ -87,57 +87,53 @@
 		</nav>
 	</div>
 
-  <form class="p-9">
+  <form action="{% url 'calculate_carbon_footprint' %}" method="post" class="p-9">
+    {% csrf_token %}
     <div class="grid gap-6 mb-6 md:grid-cols-2">
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">Petrol</label>
-            <input type="number" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="lit(0-1000)" >
-        </div>
-        <div>
-            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900">Diesel</label>
-            <input type="number" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="lit(0-1000)" >
-        </div>
-        <div>
-            <label for="company" class="block mb-2 text-sm font-medium text-gray-900 ">Electricity</label>
-            <input type="number" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="kWh(0-5000)" >
-        </div>  
-        <div>
-            <label for="phone" class="block mb-2 text-sm font-medium text-gray-900">Natural Gas</label>
-            <input type="number" id="phone" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="kWh(0-5000)">
-        </div>
-        <div>
-            <label for="website" class="block mb-2 text-sm font-medium text-gray-900">CNG</label>
-            <input type="number" id="website" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Kg(0-1000)" >
-        </div>
-        <div>
-            <label for="visitors" class="block mb-2 text-sm font-medium text-gray-900 ">CNG</label>
-            <input type="number" id="visitors" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="scm(0-1000)" >
-        </div>
-        <div>
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900 ">Flight</label>
-            <input type="number" id="first_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Km(0-200000)" >
-        </div>
-        <div>
-            <label for="last_name" class="block mb-2 text-sm font-medium text-gray-900 ">LPG</label>
-            <input type="number" id="last_name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="lit(0-1000)">
-        </div>
-        <div>
-            <label for="company" class="block mb-2 text-sm font-medium text-gray-900 ">Coal</label>
-            <input type="number" id="company" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Kg(0-1000)" >
-        </div>  
-       
-    </div>
-
+      <div>
+        <label for="petrol" class="block mb-2 text-sm font-medium text-gray-900">Petrol</label>
+        <input type="number" id="petrol" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="lit(0-1000)" >
+      </div>
+      <div>
+          <label for="diesel" class="block mb-2 text-sm font-medium text-gray-900">Diesel</label>
+          <input type="number" id="diesel" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="lit(0-1000)" >
+      </div>
+      <div>
+          <label for="electricity" class="block mb-2 text-sm font-medium text-gray-900">Electricity</label>
+          <input type="number" id="electricity" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="kWh(0-5000)" >
+      </div>  
+      <div>
+          <label for="natural_gas" class="block mb-2 text-sm font-medium text-gray-900">Natural Gas</label>
+          <input type="number" id="natural_gas" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="kWh(0-5000)">
+      </div>
+      <div>
+          <label for="cng" class="block mb-2 text-sm font-medium text-gray-900">CNG</label>
+          <input type="number" id="cng" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Kg(0-1000)" >
+      </div>
+      <div>
+          <label for="cng_scm" class="block mb-2 text-sm font-medium text-gray-900">CNG</label>
+          <input type="number" id="cng_scm" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="scm(0-1000)" >
+      </div>
+      <div>
+          <label for="flight" class="block mb-2 text-sm font-medium text-gray-900">Flight</label>
+          <input type="number" id="flight" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Km(0-200000)" >
+      </div>
+      <div>
+          <label for="lpg" class="block mb-2 text-sm font-medium text-gray-900">LPG</label>
+          <input type="number" id="lpg" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="lit(0-1000)">
+      </div>
+      <div>
+          <label for="coal" class="block mb-2 text-sm font-medium text-gray-900">Coal</label>
+          <input type="number" id="coal" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" placeholder="Kg(0-1000)" >
+      </div>  
+  </div>
+  
       <DIV class="grid place-content-center mt-5">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-          Submit
-      </DIV>
-    
-    </button>
+        <div class="grid place-content-center mt-5">
+          <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+      </div>
+  </form>
    
-   </form>
-
-
 
 <div class="mb-6 p-7">
     <label for="large-input" class="block mb-2 text-sm font-medium text-gray-900">Result</label>
